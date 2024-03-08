@@ -1,0 +1,10 @@
+@ConferenceAttendees.Api_HostAddress = https://localhost:7106
+
+GET {{ConferenceAttendees.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{ConferenceAttendees.Api_HostAddress}}/api/attendees
+
+###
