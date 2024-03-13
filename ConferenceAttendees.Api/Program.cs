@@ -5,11 +5,12 @@ using Microsoft.Extensions.Hosting;
 using static NuGet.Packaging.PackagingConstants;
 
 var builder = WebApplication.CreateBuilder(args);
-var dbPath = Path.Combine("Data","Database", "ConferenceAttendees_db.db");
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
-    options.UseSqlServer($"Data Source={dbPath}");
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConferenceAttendeeDatabaseConnection"));
 });
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
