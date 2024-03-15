@@ -5,8 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>327ff732-e844-43e7-a549-fc941ac93179</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-	<ContainerRepository>ConferenceAttendees.Api.DotnetPublish</ContainerRepository>
+	<ContainerRepository>ConferenceAttendees.Api.DotNetPublish</ContainerRepository>
   </PropertyGroup>
 
   <ItemGroup>
