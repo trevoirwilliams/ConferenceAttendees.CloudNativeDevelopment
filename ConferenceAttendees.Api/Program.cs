@@ -2,6 +2,7 @@ using ConferenceAttendees.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using static NuGet.Packaging.PackagingConstants;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConferenceAttendeeDatabaseConnection"));
 });
+
+builder.Host.UseSerilog((context, configuration) => 
+configuration.ReadFrom.Configuration(context.Configuration)
+    );
+
+builder.Services.AddCors( options => {
+    options.AddPolicy("AllowAll", 
+        b => b.AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin());
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,6 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

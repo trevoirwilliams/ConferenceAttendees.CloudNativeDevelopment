@@ -1,0 +1,78 @@
+﻿@page "/"
+
+<PageTitle>Register for the Tech Conference</PageTitle>
+<h1>Register for the Tech Conference</h1>
+
+<EditForm Model="Attendee" OnValidSubmit="HandleValidSubmit">
+     <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="fname">First Name</label>
+        <InputText class="form-control" id="fname" @bind-Value="Attendee.FirstName" />
+        <ValidationMessage For="@(() => Attendee.FirstName)" />
+    </div>
+
+    <div class="form-group">
+        <label for="lname">Last Name</label>
+        <InputText class="form-control" id="lname" @bind-Value="Attendee.LastName" />
+        <ValidationMessage For="@(() => Attendee.LastName)" />
+    </div>
+
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <InputSelect class="form-select" id="gender" @bind-Value="Attendee.GenderId">
+            <option>Select Gender</option>
+            @foreach (var gender in genders)
+            {
+                <option value="@gender.Id">@gender.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Attendee.GenderId)" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <InputText class="form-control" id="email" @bind-Value="Attendee.EmailAddress" />
+        <ValidationMessage For="@(() => Attendee.EmailAddress)" />
+    </div>
+
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <InputText class="form-control" id="PhoneNumber" @bind-Value="Attendee.PhoneNumber" />
+        <ValidationMessage For="@(() => Attendee.PhoneNumber)" />
+    </div>
+
+    <div class="form-group">
+        <label for="company">Company Name</label>
+        <InputText class="form-control" id="company" @bind-Value="Attendee.CompanyName" />
+        <ValidationMessage For="@(() => Attendee.CompanyName)" />
+    </div>
+    
+    <div class="form-group">
+        <label for="role">Job Role</label>
+        <InputSelect class="form-select" id="role" @bind-Value="Attendee.JobRoleId">
+            <option>Select Job Role</option>
+            @foreach (var role in jobRoles)
+            {
+                <option value="@role.Id">@role.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Attendee.JobRoleId)" />
+    </div>
+
+    <div class="form-group">
+        <label for="ref">Referral Source</label>
+        <InputSelect class="form-select" id="ref" @bind-Value="Attendee.ReferralSourceId">
+            <option>Select Leave Type</option>
+            @foreach (var referal in referralSources)
+            {
+                <option value="@referal.Id">@referal.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Attendee.ReferralSourceId)" />
+    </div>
+    <br/>
+    <button class="btn btn-success" type="submit">Submit Registration</button>
+</EditForm>
+
