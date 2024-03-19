@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>327ff732-e844-43e7-a549-fc941ac93179</UserSecretsId>
 	<ContainerRepository>ConferenceAttendees.Api.DotNetPublish</ContainerRepository>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
