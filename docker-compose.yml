@@ -1,22 +1,41 @@
 version: '3.4'
 
 services:
+  reverse_proxy:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "8085:8085"
+      # - "44391:44391"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d # Path to your NGINX config files
+    depends_on:
+      - conferenceattendees.ui
+      - conferenceattendees.api
+    networks:
+      - app_network
   conferenceattendees.api:
     image: ${DOCKER_REGISTRY-}conferenceattendeesapi
     build:
       context: .
       dockerfile: ConferenceAttendees.Api/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://*:7106
     ports:
-      - "7106:8081"
+      - "7106:7106"
     depends_on: [mssql, seq]
+    networks:
+      - app_network
   conferenceattendees.ui:
     image: conferenceattendees.ui
     build:
       context: .
-      dockerfile: nginx.Dockerfile
+      dockerfile: ConferenceAttendees.BlazorUI/nginx-ui.Dockerfile
     ports:
       - "8083:80"
     depends_on: [conferenceattendees.api]
+    networks:
+      - app_network
   mssql:
     image: "mcr.microsoft.com/mssql/server"
     container_name: sql2
@@ -27,6 +46,8 @@ services:
     restart: unless-stopped
     ports:
       - "1400:1433"
+    networks:
+      - app_network
   seq:
     image: datalust/seq
     restart: unless-stopped
@@ -34,3 +55,8 @@ services:
       - "5342:80"
     environment:
       - ACCEPT_EULA=Y
+    networks:
+      - app_network
+networks:
+  app_network:
+    driver: bridge

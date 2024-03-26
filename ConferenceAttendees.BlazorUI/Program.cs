@@ -10,7 +10,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://conferenceattendees.api")
+    //BaseAddress = new Uri("http://conferenceattendees.api")
+    BaseAddress = new Uri("http://api.conferenceattendees.com:7106")
 });
 builder.Services.AddScoped<IClient, Client>(); 
 await builder.Build().RunAsync();

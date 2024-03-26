@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{588287EF-4835-44BA-B212-CC407AAC4EA1}"
 	ProjectSection(SolutionItems) = preProject
 		nginx.conf = nginx.conf
-		nginx.Dockerfile = nginx.Dockerfile
 	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1799D330-D55E-47A7-8E84-2F140E20B5DF}"
