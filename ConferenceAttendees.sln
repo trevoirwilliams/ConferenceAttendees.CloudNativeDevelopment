@@ -3,17 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34607.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceAttendees.Api", "ConferenceAttendees.Api\ConferenceAttendees.Api.csproj", "{77CC596B-4B11-457F-AE1F-B146AC120193}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceAttendees.BlazorUI", "ConferenceAttendees.BlazorUI\ConferenceAttendees.BlazorUI.csproj", "{CECDEBFA-A3DB-4EA8-8800-3EACCC1B5DF9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{588287EF-4835-44BA-B212-CC407AAC4EA1}"
-	ProjectSection(SolutionItems) = preProject
-		nginx.conf = nginx.conf
-		nginx.Dockerfile = nginx.Dockerfile
-	EndProjectSection
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1799D330-D55E-47A7-8E84-2F140E20B5DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceAttendees.Api", "ConferenceAttendees.Api\ConferenceAttendees.Api.csproj", "{77CC596B-4B11-457F-AE1F-B146AC120193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +19,6 @@ Global
 		{CECDEBFA-A3DB-4EA8-8800-3EACCC1B5DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CECDEBFA-A3DB-4EA8-8800-3EACCC1B5DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CECDEBFA-A3DB-4EA8-8800-3EACCC1B5DF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1799D330-D55E-47A7-8E84-2F140E20B5DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1799D330-D55E-47A7-8E84-2F140E20B5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1799D330-D55E-47A7-8E84-2F140E20B5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1799D330-D55E-47A7-8E84-2F140E20B5DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
