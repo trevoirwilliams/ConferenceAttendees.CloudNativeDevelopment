@@ -7,16 +7,21 @@ services:
       context: .
       dockerfile: ConferenceAttendees.Api/Dockerfile
     ports:
-      - "7106:8081"
-    depends_on: [mssql, seq]
-  conferenceattendees.ui:
-    image: conferenceattendees.ui
+      - "7106:7106"
+    environment:
+      - ASPNETCORE_URLS=http://*:7106
+    depends_on: [mssql, seq_logs]
+  conferenceattendees.mvc:
+    image: ${DOCKER_REGISTRY-}conferenceattendeesmvc
     build:
       context: .
-      dockerfile: nginx.Dockerfile
+      dockerfile: ConferenceAttendees.MVC/Dockerfile
     ports:
-      - "8083:80"
-    depends_on: [conferenceattendees.api]
+      - "7230:7230"
+    environment:
+      - ASPNETCORE_URLS=http://*:7230
+    depends_on:
+      - conferenceattendees.api
   mssql:
     image: "mcr.microsoft.com/mssql/server"
     container_name: sql2
@@ -26,8 +31,8 @@ services:
       - ACCEPT_EULA=Y
     restart: unless-stopped
     ports:
-      - "1400:1433"
-  seq:
+      - "1401:1433" 
+  seq_logs:
     image: datalust/seq
     restart: unless-stopped
     ports:

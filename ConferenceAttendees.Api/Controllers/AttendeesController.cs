@@ -75,6 +75,7 @@ namespace ConferenceAttendees.Api.Controllers
         // POST: api/Attendees
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Attendee>> PostAttendee(Attendee attendee)
         {
             _context.Attendees.Add(attendee);
