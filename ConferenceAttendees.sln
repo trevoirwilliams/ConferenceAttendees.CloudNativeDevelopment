@@ -9,6 +9,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceAttendees.MVC", "
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{862C6144-4B01-4125-80F0-570AF683931D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{6B8D29AB-310F-40C4-AEF2-BCDCD82C7521}"
+	ProjectSection(SolutionItems) = preProject
+		nginx\api-cert.conf = nginx\api-cert.conf
+		nginx\api-cert.crt = nginx\api-cert.crt
+		nginx\api-cert.key = nginx\api-cert.key
+		nginx\api-cert.pfx = nginx\api-cert.pfx
+		nginx\Dockerfile = nginx\Dockerfile
+		nginx\mvc-cert.conf = nginx\mvc-cert.conf
+		nginx\mvc-cert.crt = nginx\mvc-cert.crt
+		nginx\mvc-cert.key = nginx\mvc-cert.key
+		nginx\mvc-cert.pfx = nginx\mvc-cert.pfx
+		nginx\nginx.conf = nginx\nginx.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

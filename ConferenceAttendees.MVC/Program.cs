@@ -1,4 +1,5 @@
 using ConferenceAttendees.MVC.Services.Base;
+using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://conferenceattendees.api:7106")
+    BaseAddress = new Uri("https://api.conferenceattendees.com:44391")
 });
 builder.Services.AddScoped<IClient, Client>();
 
@@ -27,6 +28,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseStaticFiles();
 
 app.UseRouting();
