@@ -27,7 +27,7 @@ services:
     networks:
       - app-network
   mssql:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "trevoirwilliams/conferenceattendeedb"
     container_name: sql2
     hostname: mssql
     environment:
