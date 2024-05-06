@@ -12,7 +12,7 @@ namespace ConferenceAttendees.Api.Controllers
         [HttpGet]
         public async Task<string> Get()
         {
-            return _configuration["Test:Value"];
+            return _configuration["EnvironmentValue"];
         }
     }
 }

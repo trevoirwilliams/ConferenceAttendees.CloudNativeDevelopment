@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conferenceseq-app
+  namespace: cloud-native-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conferenceseq-app
+  template:
+    metadata:
+      labels:
+        app: conferenceseq-app
+    spec:
+      containers:
+      - name: conferenceseq-app
+        image: datalust/seq:latest
+        ports:
+        - containerPort: 5341
+        - containerPort: 80
+        env:
+         - name: ACCEPT_EULA
+           value: "Y"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conferenceseq
+  namespace: cloud-native-dev
+spec:
+  selector:
+    app: conferenceseq-app  
+  type: NodePort  
+  ports:
+    - protocol: TCP 
+      port: 80
+      targetPort: 80  
+      nodePort: 31534
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conferenceseq-svc
+  namespace: cloud-native-dev
+spec:
+  clusterIP: None # headless service
+  selector:
+    app: conferenceseq-app
+  ports:
+    - protocol: TCP
+      port: 5341
+      targetPort: 5341

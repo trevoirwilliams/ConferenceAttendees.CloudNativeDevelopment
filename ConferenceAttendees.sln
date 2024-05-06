@@ -23,6 +23,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{6B8D29AB
 		nginx\nginx.conf = nginx\nginx.conf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{C6F915E1-D118-4771-9E21-D62B9113C5EF}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\admin-user-cluster-role.yml = k8s\admin-user-cluster-role.yml
+		k8s\admin-user.yml = k8s\admin-user.yml
+		k8s\api-deployment.yaml = k8s\api-deployment.yaml
+		k8s\mssql-deployment.yaml = k8s\mssql-deployment.yaml
+		k8s\mvc-client-deployment.yaml = k8s\mvc-client-deployment.yaml
+		k8s\namespace.yml = k8s\namespace.yml
+		k8s\persistence-volumes.yml = k8s\persistence-volumes.yml
+		k8s\seq-deployment.yaml = k8s\seq-deployment.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

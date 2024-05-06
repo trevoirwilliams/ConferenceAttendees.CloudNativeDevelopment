@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql
+  namespace: cloud-native-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+      - name: mssql
+        image: trevoirwilliams/conferenceattendeedb
+        env:
+         - name: ACCEPT_EULA
+           value: "Y"
+         - name: MSSQL_SA_PASSWORD
+           value: P@ssword1
+        ports:
+        - containerPort: 1433
+        volumeMounts:
+        - name: system
+          mountPath: /var/opt/mssql
+        - name: user
+          mountPath: /var/opt/sqlserver/data
+        - name: log
+          mountPath: /var/opt/sqlserver/log
+      tolerations:
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 10
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 10
+      volumes:
+      - name: system
+        persistentVolumeClaim:
+          claimName: mssql-system
+      - name: user
+        persistentVolumeClaim:
+          claimName: mssql-data
+      - name: log
+        persistentVolumeClaim:
+          claimName: mssql-log
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-svc
+  namespace: cloud-native-dev
+spec:
+  selector:
+    app: mssql
+  ports:
+    - protocol: TCP
+      port: 1434
+      targetPort: 1433
+      nodePort: 31433
+  type: NodePort

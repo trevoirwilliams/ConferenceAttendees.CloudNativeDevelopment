@@ -28,9 +28,17 @@ services:
     environment: 
       - MSSQL_SA_PASSWORD=P@ssword1
       - ACCEPT_EULA=Y
+      - MSSQL_DATA_DIR=/var/opt/sqlserver/data
+      - MSSQL_LOG_DIR=/var/opt/sqlserver/log
+      - MSSQL_BACKUP_DIR=/var/opt/sqlserver/backup
     restart: unless-stopped
     ports:
       - "1401:1433" 
+    volumes: 
+          - sqlsystem:/var/opt/mssql/
+          - sqldata:/var/opt/sqlserver/data
+          - sqllog:/var/opt/sqlserver/log
+          - sqlbackup:/var/opt/sqlserver/backup
     networks:
       - app-network
   seq_logs:
@@ -60,3 +68,9 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  sqlsystem:
+  sqldata:
+  sqllog:
+  sqlbackup:
